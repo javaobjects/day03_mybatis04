@@ -17,4 +17,9 @@ public interface OrderMapper {
 	//<resultMap id="ordersResultMap" type="com.tencent.pojo.Order">
 	//<select id="selectOrdersByResultMap" resultMap="ordersResultMap">
 	public List<Order> selectOrdersByResultMap();
+	
+	//一对多:返回resultMap
+	//<resultMap id="orderDetailResultMap" type="com.tencent.pojo.Order">
+	//<select id="selectOrderDetailsByResultMap" resultMap="orderDetailResultMap">
+	public List<Order> selectOrderDetailsByResultMap();
 }

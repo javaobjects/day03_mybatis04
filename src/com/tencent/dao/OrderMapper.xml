@@ -20,12 +20,22 @@
 		
 		<!-- 一对一: association -->
 		<association property="user" javaType="com.tencent.pojo.User">
-					<id column="uuid" property="id"/>
-					<result column="username" property="userName"/>
-					<result column="birthday" property="birthday"/>
-					<result column="address" property="address"/>
+			<id column="uuid" property="id"/>
+			<result column="username" property="userName"/>
+			<result column="birthday" property="birthday"/>
+			<result column="address" property="address"/>
 		</association>
+		<!-- 一对多 -->
+		<collection property="orderDetaillist" ofType="com.tencent.pojo.OrderDetail">
+			<id column="odid" property="id"/>
+			<result column="ordersid" property="ordersId"/>
+			<result column="itemsid" property="itemsId"/>
+			<result column="itemsnum" property="itemsNum"/>
+		</collection>
 	</resultMap>
+	<select id="selectOrderDetailsByResultMap" resultMap="orderDetailResultMap">
+	
+	</select>
 	<select id="selectOrdersByResultMap" resultMap="ordersResultMap">
 		select o.id,o.userid,o.orderid,o.createtime,o.note,
 			   u.id uuid,u.username,u.birthday,u.address

@@ -1,6 +1,7 @@
 package com.tencent.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 
@@ -27,4 +28,7 @@ public class Order {
 	
 	//一对一: 一个订单属于一个用户
 	private User user;
+	
+	//一对多: 一个订单可以包含多个订单明细
+	private List<OrderDetail> orderDetailList;
 }
