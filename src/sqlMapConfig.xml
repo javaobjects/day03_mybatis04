@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 加载外部配置文档 :优先读取<property>节点中的值，再读取resource属性指向的文件，如果同时存在name属性值相同的配置，后者将覆盖前者-->
+	<properties resource="db.properties">
+		<property name="jdbc.password" value="scott123"/>
+	</properties>
+	
+	<!-- 全局参数：例如二级缓存、延迟加载 -->
+	<!-- <settings></settings> -->
+	
+	<!-- 定义别名 -->
+	<typeAliases>
+		<!-- 定个单个别名     type:类路径（包名+类名）    alias：别名 -->
+		<!-- <typeAlias type="com.tencent.pojo.Emp" alias="Emp"/> -->
+		
+		<!-- 批量定义别名      name:指定取别名的实体类所在的包名,默认别名为实体类名称不区分大小写。例如Emp的别名为Emp或emp-->
+		<package name="com.tencent.pojo"/>
+	</typeAliases>
+	
+	<!-- 环境 -->
+	<environments default="development">
+		<environment id="development">
+		
+			<!-- 事务管理 ：JDBC、MANAGED(托管)-->
+			<transactionManager type="JDBC" />
+			
+			<!-- 数据源： POOLED、UNPOOLED、JNDI-->
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driverClassName}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+			
+		</environment>
+	</environments>
+	<!-- 映射文件:定义SQL语句与实体类关系的xml文件 -->
+	<mappers>
+		<!-- 单个读取配置文件 -->
+		<!-- <mapper resource="com/tencent/dao/EmpMapper.xml" /> -->
+		<!-- <mapper resource="com/tencent/dao/DeptMapper.xml" /> -->
+		
+		<!-- 单个读取配置文件：（基于mapper代理方式） -->
+		<!-- <mapper class="com.tencent.dao.DeptMapper"/> -->
+		
+		<!-- 批量读取配置文件：（基于mapper代理方式）  -->
+		<package name="com.tencent.dao"/>
+	</mappers>
+</configuration>
