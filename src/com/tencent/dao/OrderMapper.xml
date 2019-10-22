@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tencent.dao.OrderMapper">
+
+	<!-- 一对一:使用resultType，一个订单属于一个用户 -->
+	<select id="selectOrders" resultType="com.tencent.pojo.OrderCustom">
+		select o.id,o.userid,o.orderid,o.createtime,o.note,
+			   u.id,u.username,u.birthday,u.address
+	    from orders o,t_user u
+	    where o.userid = u.id
+	</select>
+	
+	<!-- 一对一:返回resultMap，查询订单及订单所属用户，一个订单属性一个用户 -->
+	<resultMap id="ordersResultMap" type="com.tencent.pojo.Order">
+		<id column="id" property="id"/><!-- column:SQL语句中的列名property:Order对象属性名称 -->
+		<result column="userid" property="userId"/>
+		<result column="orderid" property="orderId"/>
+		<result column="createtime" property="createTime"/>
+		<result column="note" property="note"/>
+		
+		<!-- 一对一: association -->
+		<association property="user" javaType="com.tencent.pojo.User">
+					<id column="uuid" property="id"/>
+					<result column="username" property="userName"/>
+					<result column="birthday" property="birthday"/>
+					<result column="address" property="address"/>
+		</association>
+	</resultMap>
+	<select id="selectOrdersByResultMap" resultMap="ordersResultMap">
+		select o.id,o.userid,o.orderid,o.createtime,o.note,
+			   u.id uuid,u.username,u.birthday,u.address
+	    from orders o,t_user u
+	    where o.userid = u.id
+	</select>
+</mapper>
