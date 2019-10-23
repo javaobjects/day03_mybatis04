@@ -8,6 +8,9 @@ import com.tencent.pojo.Page;
 import com.tencent.pojo.User;
 
 public interface OrderMapper {
+	
+	//<select id="selectOrderById" parameterType="int" resultType="com.tencent.pojo.Order">
+	public Order selectOrderById(int id);
 
 	//一对一查询：返回resultType <select id="selectOrders" resultType="com.tencent.pojo.OrderCustom">
 	public List<OrderCustom> selectOrders();

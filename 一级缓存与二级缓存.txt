@@ -1,0 +1,33 @@
+1. 一级缓存：默认配置，在同一个SqlSession中有效
+		  
+  		   但是如果碰到session.commit()  或  session.close() 时，一级缓存被清空
+  
+2. 二级缓存：手动配置，在同一的Mapper（同一个namespace）中有效
+  
+  		 ① 在sqlMapConfig.xml中开启二级缓存总开关
+			<settings>
+				<!-- 开启二级缓存总开关 ,true开启   false(默认值)不开启-->
+				<setting name="cacheEnabled" value="true"/>
+			</settings>
+			
+		 ② 在xxxMapper.xml文件中开启二级缓存子开关
+		 	<!-- 开启二级缓存的子开关 -->
+			<cache></cache>
+			
+		 ③ 需要被缓存的对象必须实现序列化接口Serializable
+		 	public class Order implements Serializable{ } 
+		 	
+		 在xxxMapper.xml文件中使用useCache="false"可以关闭指定语句的二级缓存功能
+		 				       使用flushCache="true"在DML操作之后，自动刷新缓存
+		 				       
+		 				       
+3.使用分布式缓存框架
+	 	① 导入jar包
+	 			ehcache-2.10.1.jar
+	 			mybatis-ehcache-1.0.2.jar
+	 			
+	 	② 在xxxMapper.xml文件中开启Ehcache二级缓存的开关
+	 		<!-- 开启EhCache二级缓存的子开关 -->
+			<cache type="org.mybatis.caches.ehcache.EhcacheCache"></cache>
+			
+		③ 在src下添加Ehcache分布式缓存框架的ehcache.xml的配置文件

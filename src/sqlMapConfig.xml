@@ -7,7 +7,15 @@
 	</properties>
 	
 	<!-- 全局参数：例如二级缓存、延迟加载 -->
-	<!-- <settings></settings> -->
+	<settings>
+		<!-- 开启延迟加载的开关，true使用延迟加载     false(默认值)不使用延迟加载 -->
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<!-- 将积极加载修改为按需加载 :true（默认值）积极加载     false按需加载-->
+		<setting name="aggressiveLazyLoading" value="false"/>
+		
+		<!-- 开启二级缓存总开关 ,true开启   false(默认值)不开启-->
+		<setting name="cacheEnabled" value="true"/>
+	</settings>
 	
 	<!-- 定义别名 -->
 	<typeAliases>

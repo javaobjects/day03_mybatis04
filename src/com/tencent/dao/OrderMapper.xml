@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tencent.dao.OrderMapper">
+	
+	<!-- 开启mybatis二级缓存的子开关 -->
+	<!-- <cache></cache> -->
+	
+	<!-- 开启EhCache二级缓存的子开关 -->
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache"></cache>
+
+	<!-- 用于测试一级缓存与二级缓存的SQL -->
+	<select id="selectOrderById" parameterType="int" resultType="com.tencent.pojo.Order">
+		select * from orders where id = #{id}
+	</select>
 
 	<!-- 一对一：返回resultType，查询订单及订单所属用户，一个订单属于一个用户-->
 	<select id="selectOrders" resultType="com.tencent.pojo.OrderCustom">

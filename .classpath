@@ -13,5 +13,7 @@
 	<classpathentry kind="lib" path="lib/mybatis-3.2.7.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.5.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.7.5.jar"/>
+	<classpathentry kind="lib" path="lib/ehcache-2.10.1.jar"/>
+	<classpathentry kind="lib" path="lib/mybatis-ehcache-1.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
